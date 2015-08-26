@@ -44,7 +44,7 @@ Development files for %{name}
 %setup -qn %{name}-%{version}
 
 %build
-%configure --disable-static
+%configure --disable-static --disable-maintainer-mode
 make %{?_smp_mflags}
 # Docs already shipped in jq's tarball.
 # In order to build the manual page, it
