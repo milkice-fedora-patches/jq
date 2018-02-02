@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.5
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -70,9 +70,7 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 make check
 %endif
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
+%ldconfig_scriptlets
 
 %files
 %{_bindir}/%{name}
@@ -90,6 +88,9 @@ make check
 
 
 %changelog
+* Fri Feb 02 2018 Igor Gnatenko <ignatenkobrain@fedoraproject.org> - 1.5-9
+- Switch to %%ldconfig_scriptlets
+
 * Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 1.5-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
