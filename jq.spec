@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.5
-Release:        10%{?dist}
+Release:        11%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -90,6 +90,9 @@ make check
 
 
 %changelog
+* Wed Feb 07 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.5-11
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
 * Wed Feb 07 2018 Lon Hohberger <lon@fedoraproject.org> - 1.5-10
 - Fix CVE 2015-8863
 
