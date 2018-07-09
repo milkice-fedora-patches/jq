@@ -8,6 +8,7 @@ URL:            http://stedolan.github.io/jq/
 Source0:        https://github.com/stedolan/jq/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
 Patch0:         CVE-2015-8863.patch
 
+BuildRequires:  gcc
 BuildRequires:  flex
 BuildRequires:  bison
 BuildRequires:  oniguruma-devel
