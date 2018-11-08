@@ -1,12 +1,11 @@
 Name:           jq
-Version:        1.5
-Release:        13%{?dist}
+Version:        1.6
+Release:        1%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
 URL:            http://stedolan.github.io/jq/
 Source0:        https://github.com/stedolan/jq/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
-Patch0:         CVE-2015-8863.patch
 
 BuildRequires:  gcc
 BuildRequires:  flex
@@ -44,7 +43,6 @@ Development files for %{name}
 
 %prep
 %setup -qn %{name}-%{version}
-%patch0 -p2 -b .cve-2015-8863
 
 %build
 %configure --disable-static
@@ -91,6 +89,9 @@ make check
 
 
 %changelog
+* Thu Nov 08 2018 David Fetter <david@fetter.org> - 1.6-1
+- Upstream 1.6.0
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.5-13
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
