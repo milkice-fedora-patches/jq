@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -89,6 +89,9 @@ make check
 
 
 %changelog
+* Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.6-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Thu Nov 08 2018 David Fetter <david@fetter.org> - 1.6-1
 - Upstream 1.6.0
 
