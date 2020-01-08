@@ -1,5 +1,5 @@
 Name:           jq
-Version:        1.5
+Version:        1.6
 Release:        1%{?dist}
 Summary:        Command-line JSON processor
 
@@ -7,11 +7,12 @@ License:        MIT and ASL 2.0 and CC-BY and GPLv3
 URL:            http://stedolan.github.io/jq/
 Source0:        https://github.com/stedolan/jq/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
 
+BuildRequires:  gcc
 BuildRequires:  flex
 BuildRequires:  bison
 BuildRequires:  oniguruma-devel
 
-%ifarch %{ix86} x86_64
+%ifnarch s390
 BuildRequires:  valgrind
 %endif
 
@@ -44,7 +45,7 @@ Development files for %{name}
 %setup -qn %{name}-%{version}
 
 %build
-%configure --disable-static --disable-maintainer-mode
+%configure --disable-static
 make %{?_smp_mflags}
 # Docs already shipped in jq's tarball.
 # In order to build the manual page, it
@@ -70,9 +71,7 @@ find %{buildroot} -name '*.la' -exec rm -f {} ';'
 make check
 %endif
 
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
+%ldconfig_scriptlets
 
 %files
 %{_bindir}/%{name}
@@ -90,6 +89,10 @@ make check
 
 
 %changelog
+* Wed Jan  8 2020 Haïkel Guémar <hguemar@fedoraproject.org> - 1.6-1
+- Upstream 1.6 release
+- Sync with Fedora spec
+
 * Tue Aug 25 2015 Haïkel Guémar <hguemar@fedoraproject.org> - 1.5-1
 - Upstream 1.5.0
 
