@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -89,6 +89,9 @@ make check
 
 
 %changelog
+* Wed May  27 2020 Troy Dawson<tdawson@redhat.com> - 1.6-2
+- Rebuilt for updated oniguruma (#1836692)
+
 * Wed Jan  8 2020 Haïkel Guémar <hguemar@fedoraproject.org> - 1.6-1
 - Upstream 1.6 release
 - Sync with Fedora spec
