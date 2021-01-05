@@ -15,6 +15,7 @@ BuildRequires:  oniguruma-devel
 %ifarch %{valgrind_arches}
 BuildRequires:  valgrind
 %endif
+BuildRequires: make
 
 
 %description
