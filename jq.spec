@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        6%{?dist}
+Release:        7%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -90,6 +90,9 @@ make check
 
 
 %changelog
+* Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.6-7
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
+
 * Sat Dec 05 2020 Richard W.M. Jones <rjones@redhat.com> - 1.6-6
 - Use correct valgrind_arches macro to check for valgrind.
 
