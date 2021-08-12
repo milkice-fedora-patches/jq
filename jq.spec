@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        8%{?dist}
+Release:        9%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -10,6 +10,7 @@ Source0:        https://github.com/stedolan/jq/releases/download/%{name}-%{versi
 BuildRequires:  gcc
 BuildRequires:  flex
 BuildRequires:  bison
+BuildRequires:  chrpath
 BuildRequires:  oniguruma-devel
 
 %ifarch %{valgrind_arches}
@@ -66,6 +67,10 @@ make %{?_smp_mflags}
 make DESTDIR=%{buildroot} install
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
+# Delete build-time RPATH that is unnecessary on an installed
+# system - rhbz#1987608
+chrpath -d %{buildroot}%{_bindir}/%{name}
+
 %check
 # Valgrind used, so restrict architectures for check
 %ifarch %{ix86} x86_64
@@ -90,6 +95,9 @@ make check
 
 
 %changelog
+* Thu Aug 12 2021 Lon Hohberger <lon@redhat.com> - 1.6-9
+- Drop build-time RPATH from jq binary (rhbz#1987608)
+
 * Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.6-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
