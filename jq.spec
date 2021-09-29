@@ -1,11 +1,13 @@
 Name:           jq
 Version:        1.6
-Release:        9%{?dist}
+Release:        10%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
 URL:            http://stedolan.github.io/jq/
 Source0:        https://github.com/stedolan/jq/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
+# Backport of PR#1752 for RHBZ#2008979
+Patch0:         jq-decimal-literal-number.patch
 
 BuildRequires:  gcc
 BuildRequires:  flex
@@ -17,6 +19,9 @@ BuildRequires:  oniguruma-devel
 BuildRequires:  valgrind
 %endif
 BuildRequires: make
+BuildRequires: autoconf
+BuildRequires: automake
+BuildRequires: libtool
 
 
 %description
@@ -44,9 +49,10 @@ Development files for %{name}
 
 
 %prep
-%setup -qn %{name}-%{version}
+%autosetup -n %{name}-%{version} -p1
 
 %build
+autoreconf -if
 %configure --disable-static
 make %{?_smp_mflags}
 # Docs already shipped in jq's tarball.
@@ -95,6 +101,9 @@ make check
 
 
 %changelog
+* Wed Sep 29 2021 Davide Cavalca <dcavalca@fedoraproject.org> - 1.6-10
+- Backport PR#1752 to fix an integer logic issue (rhbz#2008979)
+
 * Thu Aug 12 2021 Lon Hohberger <lon@redhat.com> - 1.6-9
 - Drop build-time RPATH from jq binary (rhbz#1987608)
 
