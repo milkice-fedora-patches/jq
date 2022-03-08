@@ -1,0 +1,11 @@
+diff -Naur a/src/jv.c b/src/jv.c
+--- a/src/jv.c	2022-03-08 12:42:41.169813593 -0800
++++ b/src/jv.c	2022-03-08 12:43:28.189080921 -0800
+@@ -308,6 +308,7 @@
+   n->refcnt = JV_REFCNT_INIT;
+   n->literal_data = NULL;
+   decContext *ctx = DEC_CONTEXT();
++  decContextClearStatus(ctx, DEC_Conversion_syntax);
+   decNumberFromString(&n->num_decimal, literal, ctx);
+   n->num_double = NAN;
+ 

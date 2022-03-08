@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        11%{?dist}
+Release:        12%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -8,6 +8,8 @@ URL:            http://stedolan.github.io/jq/
 Source0:        https://github.com/stedolan/jq/releases/download/%{name}-%{version}/%{name}-%{version}.tar.gz
 # Backport of PR#1752 for RHBZ#2008979
 Patch0:         jq-decimal-literal-number.patch
+# Backport of PR#2400 for RHBZ#2017285
+Patch1:         jq-fix-non-decimal-string.patch
 
 BuildRequires:  gcc
 BuildRequires:  flex
@@ -101,6 +103,9 @@ make check
 
 
 %changelog
+* Tue Mar 08 2022 Davide Cavalca <dcavalca@fedoraproject.org> - 1.6-12
+- Backport PR#2400 to fix iteration for non-decimal strings (rhbz#2017285)
+
 * Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 1.6-11
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
 
