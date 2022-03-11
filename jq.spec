@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        12%{?dist}
+Release:        13%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -56,7 +56,7 @@ Development files for %{name}
 %build
 autoreconf -if
 %configure --disable-static
-make %{?_smp_mflags}
+%make_build
 # Docs already shipped in jq's tarball.
 # In order to build the manual page, it
 # is necessary to install rake, rubygem-ronn
@@ -72,7 +72,7 @@ make %{?_smp_mflags}
 # $ make real_docs
 
 %install
-make DESTDIR=%{buildroot} install
+%make_install
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
 
 # Delete build-time RPATH that is unnecessary on an installed
@@ -103,6 +103,10 @@ make check
 
 
 %changelog
+* Fri Mar 11 2022 Neal Gompa <ngompa@fedoraproject.org> - 1.6-13
+- Use make macros
+- https://fedoraproject.org/wiki/Changes/UseMakeBuildInstallMacro
+
 * Tue Mar 08 2022 Davide Cavalca <dcavalca@fedoraproject.org> - 1.6-12
 - Backport PR#2400 to fix iteration for non-decimal strings (rhbz#2017285)
 
