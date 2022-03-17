@@ -1,6 +1,6 @@
 Name:           jq
 Version:        1.6
-Release:        13%{?dist}
+Release:        14%{?dist}
 Summary:        Command-line JSON processor
 
 License:        MIT and ASL 2.0 and CC-BY and GPLv3
@@ -81,7 +81,7 @@ chrpath -d %{buildroot}%{_bindir}/%{name}
 
 %check
 # Valgrind used, so restrict architectures for check
-%ifarch %{ix86} x86_64
+%ifarch %{valgrind_arches}
 make check
 %endif
 
@@ -103,6 +103,10 @@ make check
 
 
 %changelog
+* Thu Mar 17 2022 Milkice Qiu <milkice@milkice.me> - 1.6-14
+- Use %%{valgrind_arches}
+- Patch from David Abdurachmanov <david.abdurachmanov@gmail.com>
+
 * Fri Mar 11 2022 Neal Gompa <ngompa@fedoraproject.org> - 1.6-13
 - Use make macros
 - https://fedoraproject.org/wiki/Changes/UseMakeBuildInstallMacro
